@@ -63,13 +63,19 @@ Many other applications at Voodoo will use consume this API.
 We are planning to put this project in production. According to you, what are the missing pieces to make this project production ready? 
 Please elaborate an action plan.
 
+First i wouldn't be using a sql database to make searches like that but something like elastic search or meili looks nice. Those would cover language search problems (with the encoding problems). For the ui it would also give a search with autocomplete coming etc...
+If we stick with with a normal db a cache system might be needed
+I'm not familiar with VueJS so i won't comment on it
+
 #### Question 2:
 Let's pretend our data team is now delivering new files every day into the S3 bucket, and our service needs to ingest those files
 every day through the populate API. Could you describe a suitable solution to automate this? Feel free to propose architectural changes.
+
+We could use something like kafka or any event driven system that exist to check peridically and ingest needed data. If it's on s3 i guess something with kinesis could work out as its inside amazon s3 and would allow the creation of a consumer that would get the data inside a database
 
 #### Question 3:
 Both the current database schema and the files dropped in the S3 bucket are not optimal.
 Can you find ways to improve them?
 
-
+Use cassandra to ingest the data instead of s3 and get the search data in a database made for it :D
 
